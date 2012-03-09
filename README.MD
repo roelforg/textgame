@@ -1,0 +1,9 @@
+===TEXTGAME===
+This is a simple text-based game.
+
+Installation:
+[code]
+make
+[/code]
+The binary's are in "./bin".
+
