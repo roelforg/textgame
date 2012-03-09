@@ -1,0 +1,10 @@
+#include <general.h>
+
+using namespace std;
+
+int main(int argc, char *argv[])
+{
+	Level *level = new Level("entry");
+	return 0;
+}
+

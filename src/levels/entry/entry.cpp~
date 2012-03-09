@@ -1,0 +1,12 @@
+#include <level.h>
+
+void handleCommand(string command)
+{
+}
+void init()
+{
+}
+void exit()
+{
+}
+

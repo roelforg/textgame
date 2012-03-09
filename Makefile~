@@ -1,3 +1,5 @@
+DIR=`pwd`
+
 all:
-	@make -C src
+	@make -C src DIR=$(pwd)
 

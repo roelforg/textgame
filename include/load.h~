@@ -1,0 +1,16 @@
+#include <general.h>
+using namespace std;
+
+class Level {
+	public:
+
+	typedef void (*hC)(string);
+	typedef void (*vD)();
+	vD FnInit, FnExit;
+	hC FnHandle;
+	string filename;
+
+	Level(string);
+	~Level();
+};
+
