@@ -6,9 +6,9 @@ level:
 	@make -C levels DIR=$(DIR)
 
 app:
-	@for file in *.cpp; do echo "[CXX]\t"$$file && g++ -c $(CXXFLAGS) $$file; done
+	@for file in *.cpp; do echo "[CXX]\t"$$file && g++ -c $(CXXFLAGS) $$file ; done
 	@echo "[LD]\ttextgame"
-	@g++ *.o $(LDFLAGS) -o $(DIR)/bin/textgame
+	@g++ *.o $(LDFLAGS) -g -ggdb -o $(DIR)/bin/textgame
 
 run: all
 	$(DIR)/bin/textgame

@@ -2,17 +2,20 @@
 #define __GENERAL_H__
 
 #define VERSION "0.1_beta"
+#define LVL_LOC "/data/textgame/lib"
 
 #include <iostream>
 #include <string>
 #include <cstdlib>
 #include <cstdio>
+#include <sstream>
 #include <vector>
 #include <cstring>
 
 using namespace std;
 
 #include "ex.h"
+#include "eerror.h"
 #include "load.h"
 
 #endif

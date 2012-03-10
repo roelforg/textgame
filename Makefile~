@@ -1,5 +1,6 @@
 DIR=`pwd`
 
 all:
-	@make -C src DIR=$(pwd)
+	find . | grep "\.o" | xargs rm || true
+	@make -C src DIR=$(DIR)
 

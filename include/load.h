@@ -13,5 +13,8 @@ class Level {
 
 	Level(string);
 	~Level();
+
+	void load_level(string);
+	void exit_level();
 };
 

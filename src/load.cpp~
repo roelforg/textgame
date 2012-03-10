@@ -9,14 +9,20 @@ void enterLevel(string);
 
 void enterLevel(string level)
 {
-	delete *curr_level;
-	curr_level = new Level(level);
+	curr_level->exit_level();
+	curr_level->load_level(level);
 }
 
 Level::Level(string name)
 {
+	this->load_level(name);
+}
+
+void Level::load_level(string name)
+{
+	cout << "Loading " << name << "...";
 	this->filename = name;
-	this->hnd = dlopen(string("/data/textgame/lib/"+name+".so").c_str(), RTLD_NOW);
+	this->hnd = dlopen(string(string(LVL_LOC)+"/"+name+".so").c_str(), RTLD_NOW);
 	void* init = dlsym(this->hnd,"init");
 	if (init == NULL)
 		throw string("Symbol init not found!");
@@ -39,10 +45,12 @@ Level::Level(string name)
 	else
 		tmp = (vD)init;
 	tmp();
+	cout << "OK!" << endl << "You've entered \"" << name << "\"!" << endl;
 	this->FnInit();
+	//cout << "Entered level \"" << name << "\"!" << endl;
 }
 
-Level::~Level()
+void Level::exit_level()
 {
 	void *init;
 	this->FnExit();
@@ -54,5 +62,10 @@ Level::~Level()
 		tmp = (vD)init;
 	tmp();
 	dlclose(this->hnd);
+}
+
+Level::~Level()
+{
+	this->exit_level();
 }
 
