@@ -34,6 +34,10 @@ void main_loop()
 				case E_SWLVL:
 				switchLevel();
 				break;
+				case E_EOG:
+				cout << "*** GAME OVER ***" << endl;
+				running = 0;
+				break;
 				default:
 				//don't know this one, rethrow to other handlers
 				throw e;
@@ -47,6 +51,7 @@ void main_loop()
 int main(int argc, char *argv[])
 {
 	init_error(); //initialize error handling
+	init_level(); //start level-tracker
 	try {
 		cout << "Welcome to TEXTGAME (" << VERSION << ")!" << endl;
 		curr_level = new Level("entry"); //load the first level

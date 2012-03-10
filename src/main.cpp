@@ -32,7 +32,17 @@ void main_loop()
 				cout << "You can't do that!" << endl;
 				break;
 				case E_SWLVL:
-				switchLevel();
+				try {switchLevel();} catch (E_ERROR er) {
+					switch(er) {
+						case E_EOG:
+						cout << "*** GAME OVER ***" << endl;
+						running = 0;
+						break;
+						default:
+						throw er;
+						break;
+					}
+				}
 				break;
 				default:
 				//don't know this one, rethrow to other handlers
