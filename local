@@ -1,12 +1,13 @@
 all:
 	@make -f Makefile
-	find . | grep "~" | xargs rm
+	find . | grep "\.o" | xargs rm 2>/dev/null || true
+	find . | grep "~" | xargs rm 2>/dev/null || true
 	git add .
 	git commit -m "`date`"
 	git push
 publish:
 	git add .
-	git commit -m "`date`"
+	#git commit -m "`date`"
 	git push -u release master
 
 
