@@ -4,6 +4,9 @@ all:
 	git add .
 	git commit -m "`date`"
 	git push
-	git push -u release
+publish:
+	git add .
+	git commit -m "`date`"
+	git push -u release master
 
 
