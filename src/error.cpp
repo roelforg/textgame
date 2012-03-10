@@ -26,28 +26,30 @@ string demangle(const char* symbol) {
 }
 
 #define MAX_FRAMES 100
-void backt() {
+void backtrace_generator() {
 	void* addresses[MAX_FRAMES];
 	int size;
 	size = backtrace(addresses, MAX_FRAMES);
 	char** symbols = backtrace_symbols(addresses, size);
 	int x;
 	for (x = 0; x < size; x++) {
-	 	cerr << x << ": " << /*demangle(*/symbols[x]/*).c_str()*/ << endl;
+	 	cerr << x << ": " << demangle(symbols[x]) << endl;
 		cerr.flush();
 	}
 	free(symbols);
 }
 
-void sig(int signum)
+void signal_handler(int signum)
 {
 	printf("Caught signal %d\n",signum);
 
-	backt();
+	backtrace_generator();
 
 	//Terminate program
 	exit(signum);
 }
+
+#define sig signal_handler
 
 void init_error()
 {

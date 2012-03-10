@@ -43,7 +43,7 @@ void init_level()
 
 string getNextLevel()
 {
-	if (level_list.size() != 0)
+	if (level_list.size() > 0)
 		return level_list[0];
 	else
 		return "exit";
@@ -57,7 +57,7 @@ void switchLevel()
 	if (switchto != "exit")
 		for (unsigned i = 0; i < level_list.size(); i++)
 			if (level_list[i] == switchto)
-				level_list.erase(level_list.begin()+i, level_list.begin()+i);
+				level_list.erase(level_list.begin()+i, level_list.begin()+i+1);
 	curr_level->load_level(switchto);
 }
 void enterLevel(string level)
