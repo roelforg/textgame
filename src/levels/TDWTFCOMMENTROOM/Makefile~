@@ -1,2 +1,2 @@
-LEVEL=entry
+LEVEL=skeleton
 include ../Makefile.skel

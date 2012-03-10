@@ -3,7 +3,10 @@
 
 enum E_ERROR {
 	E_CMDNOTFOUND,
-	E_GENERERAL
+	E_IGN,
+	E_SWLVL,
+	E_EOG,
+	E_GENERAL
 };
 
 #endif

@@ -1,2 +1,2 @@
-LEVEL=entry
+LEVEL=exit
 include ../Makefile.skel

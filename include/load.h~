@@ -1,6 +1,8 @@
 #include <general.h>
 using namespace std;
 
+void switchLevel();
+
 class Level {
 	public:
 
@@ -13,5 +15,8 @@ class Level {
 
 	Level(string);
 	~Level();
+
+	void load_level(string);
+	void exit_level();
 };
 

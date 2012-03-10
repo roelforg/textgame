@@ -1,5 +1,12 @@
 #ifndef __EX_H__
 #define __EX_H__
 
+enum E_ERROR {
+	E_CMDNOTFOUND,
+	E_IGN,
+	E_SWLVL,
+	E_GENERAL
+};
+
 #endif
 

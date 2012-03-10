@@ -1,6 +1,9 @@
 #include <general.h>
 using namespace std;
 
+void switchLevel();
+void init_level();
+
 class Level {
 	public:
 

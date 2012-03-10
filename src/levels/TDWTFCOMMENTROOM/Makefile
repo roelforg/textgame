@@ -1,2 +1,2 @@
-LEVEL=entry
+LEVEL=TDWTFCOMMENTROOM
 include ../Makefile.skel

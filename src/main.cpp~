@@ -15,22 +15,24 @@ void main_loop()
 	{
 		cout << "> ";
 		getline(cin,command);
-		//cout << command << endl;
 		try {
-			if (0) { //hack for the CMD macro
+			if (command == "") { //hack for the CMD macro --- EDIT: nice way to handle emptry commands ;)
 			CMD("exit" || command == "quit")
 				cout << "Exit!" << endl;
 				running = 0;
 			CMD("save" || command == "load")
 				cerr << "Not implemented!" << endl;
 			} else {
-				curr_level->FnHandle(command);
+				curr_level->FnHandle(command); //not a system command, if let the level-cmd-handler handle it
 			}
 		} catch (E_ERROR e) {
 			switch (e)
 			{
-				case E_CMDNOTFOUND:
+				case E_CMDNOTFOUND: //get's thrown by the level-cmd-handler incase it can't find it either
 				cout << "You can't do that!" << endl;
+				break;
+				case E_SWLVL:
+				switchLevel();
 				break;
 				default:
 				//don't know this one, rethrow to other handlers
@@ -39,6 +41,7 @@ void main_loop()
 			}
 		}
 	}
+	#undef CMD
 }
 
 int main(int argc, char *argv[])
@@ -46,7 +49,7 @@ int main(int argc, char *argv[])
 	init_error(); //initialize error handling
 	try {
 		cout << "Welcome to TEXTGAME (" << VERSION << ")!" << endl;
-		curr_level = new Level("entry");
+		curr_level = new Level("entry"); //load the first level
 		main_loop();
 	} catch (string err) {
 		cerr << endl << "***ERROR*** " << err << endl;

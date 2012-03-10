@@ -2,69 +2,17 @@
 #include "ex.h"
 #include <vector>
 
-#define CMD(x) } else if (args[0] == x) {
-#define ADDV(x,y) x.push_back(y);
-#define FIND(x) cout << "Found item: " << x << endl; \
-items.push_back(x);
-#define ACHIEVE(x) achievements.push_back(EA_##x);
-
-vector<string> items;
-
 enum EA_achieve {
 	EA_DOOR_OPEN
 };
-vector<EA_achieve> achievements;
 
-bool has_item(string item)
-{
-	bool rc = false;
-	for (unsigned i = 0; i < items.size(); i++)
-		if (items[i] == item)
-		{
-			rc = true;
-			break;
-		}
-	return rc;
-}
-
-bool has_achievement(EA_achieve ach)
-{
-	bool rc = false;
-	for (unsigned i = 0; i < achievements.size(); i++)
-		if (achievements[i] == ach)
-		{
-			rc = true;
-			break;
-		}
-	return rc;
-}
-
-vector<string> parse_args(string cmd)
-{
-	vector<string> rc;
-	string tmp;
-	size_t found = 0, of = 0;
-	found = cmd.find(' ', found);
-	if (found != string::npos)
-	while (found != string::npos)
-	{
-		tmp = cmd.substr((of == 0)?0:of+1, found-of);
-		ADDV(rc,tmp);
-		of = found;
-		found = cmd.find(' ', found+1);
-	}
-	ADDV(rc,cmd.substr((of == 0)?0:of+1,found-of));
-
-	return rc;
-}
+#include <level_shared.h>
 
 vector<string> stuff;
 
 void handleCommand(string command)
 {
-	vector<string> args = parse_args(command);
-
-	if (0) { //hack for the CMD macro
+	hC_begin
 
 	CMD("look")
 		cout << "You see:" << endl;
@@ -77,7 +25,7 @@ void handleCommand(string command)
 			{
 				cout << "The door opened!" << endl;
 				ACHIEVE(DOOR_OPEN);
-				enterLevel("entry");
+				goNextLevel();
 			}
 			else
 			{
@@ -90,9 +38,7 @@ void handleCommand(string command)
 		if (args[1] == "flowerpot")
 			FIND("key");
 
-	} else {
-		throw E_CMDNOTFOUND;
-	}
+	hC_end
 }
 void init()
 {
@@ -101,5 +47,6 @@ void init()
 }
 void exit()
 {
+	cout << "Congrats!" << endl << "You've started your trip through the many, many levels!" << endl << "Have fun!" << endl;
 }
 
