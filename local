@@ -1,7 +1,9 @@
 all:
 	@make -f Makefile
-	find . | grep "~"
+	find . | grep "~" | xargs rm
 	git add .
 	git commit -m "`date`"
 	git push
+	git push -u release
+
 
