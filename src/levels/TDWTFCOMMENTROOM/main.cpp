@@ -4,6 +4,8 @@
 //#define NOEA
 
 #ifndef NOEA
+//EA = Enum Achievements
+//the EA_achieve is used in level_shared.h
 enum EA_achieve {
 	EA_CAPTCHA,
 	EA_COMMENT,
@@ -13,7 +15,7 @@ enum EA_achieve {
 
 #include <level_shared.h>
 
-vector<string> stuff;
+vector<string> stuff; //what do we see?
 
 void handleCommand(string command)
 {
@@ -76,4 +78,19 @@ void init()
 void exit()
 {
 }
+
+/*\
+For those of you that are reading this b/c they can't figure this level out.
+This is the sequence you need (the help and look aren't needed but are nice to get an idea of how this works):
+help
+look
+take captcha
+say captcha
+take comment
+post comment
+open door
+
+Note that the order is key!
+For instance: you need to say the captcha before you can take the comment.
+\*/
 

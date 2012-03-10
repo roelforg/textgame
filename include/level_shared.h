@@ -3,7 +3,7 @@
 
 #define CMD(x) } else if (args[0] == x) {
 #define ADDV(x,y) x.push_back(y);
-#define DELV(x,y) x.erase(x.begin()+y, x.end()+y);
+#define DELV(x,y) x.erase(x.begin()+y, x.end()+y+1);
 #define TRUNCV(x) x.erase(x.begin(), x.end());
 #define FIND(x) cout << "Found item: " << x << endl; \
 items.push_back(x);

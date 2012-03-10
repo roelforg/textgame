@@ -1,0 +1,67 @@
+I see you're interested in developing for TEXTGAME.
+It's build in C++.
+Let's explain the dir. stucture.
+repo_root
+|\_doc Documentation for developers
+|\_include Do i need to tell you what?
+|\_lib Just the lib's (it also contains the levels unless you modify the makefiles and modify include/general.h)
+|\_src The source dir
+||\_levels This dir contains the levels
+|||\_entry This is the dir from the entry level (you need to start somewhere right?)
+|||\_exit This one will be called last (there is code in src/load.cpp to regulate that entry is run first and exit last)
+|||\_skel This is an skeleton for one's level (the makefile in src/levels is set up to ignore this dir)
+
+Let's start be making your own level (let's you get a feel for the stuff)!
+Copy the skel dir e.g.
+[code]
+cp -R src/levels/skel src/levels/mylevel
+[/code]
+Modify src/levels/mylevel/Makefile and change
+[code]
+LEVEL=skeleton
+[/code]
+to
+[code]
+LEVEL=mylevel
+[/code]
+Open up src/level/main.cpp
+Let's make a simple one, no challanges.
+Uncomment the "NOEA" define
+Put this after "#include <level_shared.h>":
+[code]
+vector<string> stuff;
+[/code]
+Put this in "init()":
+[code]
+	ADDV(stuff, "a door");
+[/code]
+And this in "handleCommand(string command)" after the "hC_begin" and before "hC_end" (yes, there shouldn't be a ";" after it):
+[code]
+	CMD("open") //define an command! (this is an macro from level_shared.h just like hC_*)
+		if (args[1] == "door") //args is defined by hC_begin
+		{
+			cout << "The door opened!" << endl;
+			goNextLevel(); //go to the next level
+		}
+		else
+		{
+			throw E_CMDNOTFOUND;	/*unless the "open door" sequence is given, this is an invalid command
+						(there is a similar section in hC_end to throw this if you haven't spec'd a CMD that mached the command,
+						but it doesn't get triggered if there is an non-matching arg instead of an non-matching command)*/
+		}
+	CMD("look")
+		cout << "You see:" << endl;
+		for (unsigned i = 0; i < stuff.size(); i++)
+			cout << " * " << stuff[i] << endl;
+[/code]
+Note: You should add a help CMD that lists every CMD define you have included, in this case it should list "open" and "look".
+Save, go to the top-dir of the tree, and run make (note: you *have* to run this from the repo-root as this passes a var around so there are some full paths, no DIR = stuff get's put in /lib and other dirs)
+Now run ./bin/textgame
+And play!
+Hint:
+The entry level (the first one) is simple!
+(if you don't succeed, try to lift the flowerpot)
+The first level shows the need for an "help" instruction defining all commands defined in the level (but not the order or the args needed ;P)
+
+If you wan't to get a better look, try reading the TDWTFCOMMENTROOM level src.
+
