@@ -1,5 +1,5 @@
 CXXFLAGS:=-I$(DIR)/include
-LDFLAGS:=-ldl
+LDFLAGS:=-ldl -rdynamic
 
 all: level app
 level:

@@ -2,6 +2,8 @@
 
 void handleCommand(string command)
 {
+
+	throw E_CMDNOTFOUND;
 }
 void init()
 {

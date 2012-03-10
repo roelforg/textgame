@@ -4,10 +4,14 @@
 
 using namespace std;
 
+extern "C" {
+
 void enterLevel(string);
 void handleCommand(string);
 void init();
 void exit();
+
+}
 
 #endif
 
